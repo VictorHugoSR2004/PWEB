@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Atividade 9 - Funções JS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    section {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 5px;
+      margin: 5px;
+    }
+    .resultado {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Atividade 9 - Funções JavaScript</h1>
+
+  <!-- Função 1 -->
+  <section>
+    <h2>1. Maior de três números</h2>
+    <input type="number" id="n1">
+    <input type="number" id="n2">
+    <input type="number" id="n3">
+    <button onclick="maiorNumero()">Ver maior</button>
+    <div class="resultado" id="res1"></div>
+  </section>
+
+  <!-- Função 2 -->
+  <section>
+    <h2>2. Números em ordem crescente</h2>
+    <input type="number" id="ord1">
+    <input type="number" id="ord2">
+    <input type="number" id="ord3">
+    <button onclick="ordenar()">Ordenar</button>
+    <div class="resultado" id="res2"></div>
+  </section>
+
+  <!-- Função 3 -->
+  <section>
+    <h2>3. Verificar se é palíndromo</h2>
+    <input type="text" id="texto">
+    <button onclick="verificarPalindromo()">Verificar</button>
+    <div class="resultado" id="res3"></div>
+  </section>
+
+  <!-- Função 4 -->
+  <section>
+    <h2>4. Tipo de triângulo</h2>
+    <input type="number" id="l1">
+    <input type="number" id="l2">
+    <input type="number" id="l3">
+    <button onclick="verificarTriangulo()">Ver tipo</button>
+    <div class="resultado" id="res4"></div>
+  </section>
+
+  <script>
+    // 1. Maior de três números
+    function maiorNumero() {
+      let a = Number(document.getElementById("n1").value);
+      let b = Number(document.getElementById("n2").value);
+      let c = Number(document.getElementById("n3").value);
+      let maior = Math.max(a, b, c);
+      document.getElementById("res1").innerText = `Maior número: ${maior}`;
+    }
+
+    //
