@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Filme</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        form { display: grid; gap: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select, button { padding: 8px; width: 100%; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        #resultados { margin-top: 20px; padding: 15px; background-color: #f5f5f5; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Pesquisa sobre o Filme</h1>
+   
+    <form id="pesquisaForm">
+        <div>
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" min="1" max="120" required>
+        </div>
+       
+        <div>
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" required>
+                <option value="">Selecione...</option>
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+                <option value="outros">Outros</option>
+            </select>
+        </div>
+       
+        <div>
+            <label>Opinião sobre o filme:</label>
+            <div>
+                <input type="radio" id="otimo" name="opiniao" value="4" required>
+                <label for="otimo">Ótimo (4)</label>
+            </div>
+            <div>
+                <input type="radio" id="bom" name="opiniao" value="3">
+                <label for="bom">Bom (3)</label>
+            </div>
+            <div>
+                <input type="radio" id="regular" name="opiniao" value="2">
+                <label for="regular">Regular (2)</label>
+            </div>
+            <div>
+                <input type="radio" id="pessimo" name="opiniao" value="1">
+                <label for="pessimo">Péssimo (1)</label>
+            </div>
+        </div>
+       
+        <button type="submit">Adicionar Resposta</button>
+    </form>
+   
+    <button id="calcularBtn" style="display: none;">Calcular Estatísticas</button>
+   
+    <div id="resultados"></div>
+ 
+    <script>
+        // Implementação da classe PesquisaFilme aqui...
+        const pesquisa = new PesquisaFilme();
+        const form = document.getElementById('pesquisaForm');
+        const calcularBtn = document.getElementById('calcularBtn');
+        const resultadosDiv = document.getElementById('resultados');
+        let contadorParticipantes = 0;
+        const TOTAL_PARTICIPANTES = 45;
+ 
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+           
+            const idade = parseInt(document.getElementById('idade').value);
+            const sexo = document.getElementById('sexo').value;
+            const opiniao = parseInt(document.querySelector('input[name="opiniao"]:checked').value);
+           
+            try {
+                pesquisa.adicionarParticipante(idade, sexo, opiniao);
+                contadorParticipantes++;
+               
+                // Limpa o formulário
+                form.reset();
+               
+                // Atualiza mensagem
+                resultadosDiv.innerHTML = `Resposta registrada! (${contadorParticipantes}/${TOTAL_PARTICIPANTES})`;
+               
+                // Mostra botão de calcular quando atingir 45 participantes
+                if (contadorParticipantes >= TOTAL_PARTICIPANTES) {
+                    calcularBtn.style.display = 'block';
+                    resultadosDiv.innerHTML += '<br>Pesquisa completa! Clique em "Calcular Estatísticas" para ver os resultados.';
+                    form.style.display = 'none';
+                }
+            } catch (error) {
+                resultadosDiv.innerHTML = `Erro: ${error.message}`;
+            }
+        });
+ 
+        calcularBtn.addEventListener('click', function() {
+            try {
+                const estatisticas = pesquisa.calcularEstatisticas();
+               
+                let html = '<h2>Resultados da Pesquisa</h2>';
+                html += `<p><strong>Média de idade:</strong> ${estatisticas.mediaIdade} anos</p>`;
+                html += `<p><strong>Idade da pessoa mais velha:</strong> ${estatisticas.idadeMaisVelha} anos</p>`;
+                html += `<p><strong>Idade da pessoa mais nova:</strong> ${estatisticas.idadeMaisNova} anos</p>`;
+                html += `<p><strong>Quantidade de "péssimo":</strong> ${estatisticas.totalPessimo}</p>`;
+                html += `<p><strong>Porcentagem de "ótimo" e "bom":</strong> ${estatisticas.porcentagemOtimoBom}</p>`;
+                html += '<p><strong>Distribuição por sexo:</strong></p>';
+                html += `<ul>
+                    <li>Feminino: ${estatisticas.contagemSexo.feminino}</li>
+                    <li>Masculino: ${estatisticas.contagemSexo.masculino}</li>
+                    <li>Outros: ${estatisticas.contagemSexo.outros}</li>
+                </ul>`;
+               
+                resultadosDiv.innerHTML = html;
+                calcularBtn.style.display = 'none';
+            } catch (error) {
+                resultadosDiv.innerHTML = `Erro: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
+ 
