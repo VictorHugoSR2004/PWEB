@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Atividade PWEB</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    .card {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #007BFF;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    h2 { color: #007BFF; }
+  </style>
+</head>
+<body>
+
+  <h2>Parte 1: Retângulo</h2>
+  <div class="card" id="retangulo"></div>
+
+  <h2>Parte 2: Conta, Corrente e Poupança</h2>
+  <div class="card" id="contas"></div>
+
+  <script>
+    // === Parte 1: Retângulo ===
+    function Retangulo(x, y) {
+      this.base = x;
+      this.altura = y;
+      this.calcularArea = function() {
+        return this.base * this.altura;
+      }
+    }
+
+    let base = parseFloat(prompt("Digite a base do retângulo:"));
+    let altura = parseFloat(prompt("Digite a altura do retângulo:"));
+
+    const ret = new Retangulo(base, altura);
+    document.getElementById("retangulo").innerHTML = `
+      Base: ${ret.base} <br>
+      Altura: ${ret.altura} <br>
+      Área: ${ret.calcularArea()}
+    `;
+
+    // === Parte 2: Conta com herança ===
+    class Conta {
+      constructor(nome, banco, numero, saldo) {
+        this._nome = nome;
+        this._banco = banco;
+        this._numero = numero;
+        this._saldo = saldo;
+      }
+
+      get nome() { return this._nome; }
+      set nome(n) { this._nome = n; }
+
+      get banco() { return this._banco; }
+      set banco(b) { this._banco = b; }
+
+      get numero() { return this._numero; }
+      set numero(n) { this._numero = n; }
+
+      get saldo() { return this._saldo; }
+      set saldo(s) { this._saldo = s; }
+
+      mostrarDados() {
+        return `
+          Nome: ${this._nome}<br>
+          Banco: ${this._banco}<br>
+          Número: ${this._numero}<br>
+          Saldo: R$${this._saldo}
+        `;
+      }
+    }
+
+    class Corrente extends Conta {
+      constructor(nome, banco, numero, saldo, saldoEspecial) {
+        super(nome, banco, numero, saldo);
+        this._saldoEspecial = saldoEspecial;
+      }
+
+      get saldoEspecial() { return this._saldoEspecial; }
+      set saldoEspecial(v) { this._saldoEspecial = v; }
+
+      mostrarDados() {
+        return super.mostrarDados() + `<br>Saldo Especial: R$${this._saldoEspecial}`;
+      }
+    }
+
+    class Poupanca extends Conta {
+      constructor(nome, banco, numero, saldo, juros, dataVencimento) {
+        super(nome, banco, numero, saldo);
+        this._juros = juros;
+        this._dataVencimento = dataVencimento;
+      }
+
+      get juros() { return this._juros; }
+      set juros(j) { this._juros = j; }
+
+      get dataVencimento() { return this._dataVencimento; }
+      set dataVencimento(d) { this._dataVencimento = d; }
+
+      mostrarDados() {
+        return super.mostrarDados() + `<br>Juros: ${this._juros}%<br>Vencimento: ${this._dataVencimento}`;
+      }
+    }
+
+    // Dados via prompt para Corrente
+    const nomeC = prompt("Digite o nome do correntista:");
+    const bancoC = prompt("Digite o banco:");
+    const numeroC = prompt("Digite o número da conta:");
+    const saldoC = parseFloat(prompt("Digite o saldo da conta:"));
+    const especial = parseFloat(prompt("Digite o saldo especial:"));
+    const corrente = new Corrente(nomeC, bancoC, numeroC, saldoC, especial);
+
+    // Dados via prompt para Poupança
+    const nomeP = prompt("Digite o nome da poupanca:");
+    const bancoP = prompt("Digite o banco:");
+    const numeroP = prompt("Digite o número da conta:");
+    const saldoP = parseFloat(prompt("Digite o saldo da conta:"));
+    const juros = parseFloat(prompt("Digite o valor de juros:"));
+    const vencimento = prompt("Digite a data de vencimento:");
+    const poupanca = new Poupanca(nomeP, bancoP, numeroP, saldoP, juros, vencimento);
+
+   
+    document.getElementById("contas").innerHTML = `
+      <strong>Conta Corrente:</strong><br>${corrente.mostrarDados()}<br><br>
+      <strong>Conta Poupança:</strong><br>${poupanca.mostrarDados()}
+    `;
+  </script>
+
+</body>
+</html>
