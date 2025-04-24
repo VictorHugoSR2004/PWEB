@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Objeto Funcionário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .card {
+      background: #f0f0f0;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Criação do Objeto Funcionário</h2>
+
+  <div class="card" id="forma1"></div>
+  <div class="card" id="forma2"></div>
+  <div class="card" id="forma3"></div>
+
+  <script>
+    // Forma 1: Usando notação literal
+    const funcionario1 = {
+      matricula: '001',
+      nome: 'Ana Silva',
+      funcao: 'Analista de Dados'
+    };
+
+    document.getElementById("forma1").innerHTML = `
+      <strong>Forma 1 (Literal):</strong><br>
+      Matrícula: ${funcionario1.matricula}<br>
+      Nome: ${funcionario1.nome}<br>
+      Função: ${funcionario1.funcao}
+    `;
+
+    const funcionario2 = new Object();
+    funcionario2.matricula = '002';
+    funcionario2.nome = 'Carlos Lima';
+    funcionario2.funcao = 'Desenvolvedor';
+
+    document.getElementById("forma2").innerHTML = `
+      <strong>Forma 2 (new Object):</strong><br>
+      Matrícula: ${funcionario2.matricula}<br>
+      Nome: ${funcionario2.nome}<br>
+      Função: ${funcionario2.funcao}
+    `;
+
+
+    function Funcionario(matricula, nome, funcao) {
+      this.matricula = matricula;
+      this.nome = nome;
+      this.funcao = funcao;
+    }
+
+    const funcionario3 = new Funcionario('003', 'Beatriz Rocha', 'Gerente de Projetos');
+
+    document.getElementById("forma3").innerHTML = `
+      <strong>Forma 3 (Função Construtora):</strong><br>
+      Matrícula: ${funcionario3.matricula}<br>
+      Nome: ${funcionario3.nome}<br>
+      Função: ${funcionario3.funcao}
+    `;
+  </script>
+
+</body>
+</html>
