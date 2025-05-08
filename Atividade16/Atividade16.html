@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolha um Curso - Fatec Sorocaba</title>
+</head>
+<body style="text-align: center; font-family: Arial, sans-serif; margin-top: 50px;">
+
+  <h2>Escolha um Curso da Fatec Sorocaba:</h2>
+
+  <select onchange="abrirCurso(this)" id="seletorCurso">
+    <option value="">-- Selecione --</option>
+    <option value="ads">Análise e Desenvolvimento de Sistemas</option>
+    <option value="fm">Fabricação Mecânica</option>
+    <option value="log">Logística</option>
+    <option value="gep">Gestão Empresarial</option>
+    <option value="proj">Projetos Mecânicos</option>
+    <option value="manut">Manutenção Industrial</option>
+  </select>
+
+  <script>
+    function abrirCurso(select) {
+      const curso = select.value;
+
+      if (!curso) return; // Não faz nada se for "-- Selecione --"
+
+      let nomeCurso = select.options[select.selectedIndex].text;
+      let confirmar = confirm(`Deseja abrir a página com informações sobre "${nomeCurso}"?`);
+
+      if (confirmar) {
+        let conteudo = "";
+
+        switch (curso) {
+          case "ads":
+            conteudo = "<h2>ADS</h2><p>Curso voltado ao desenvolvimento de software, banco de dados, e sistemas web/mobile.</p>";
+            break;
+          case "fm":
+            conteudo = "<h2>Fabricação Mecânica</h2><p>Foco em processos de fabricação e usinagem com alta precisão.</p>";
+            break;
+          case "log":
+            conteudo = "<h2>Logística</h2><p>Curso focado em cadeias de suprimentos, transportes e gestão de estoques.</p>";
+            break;
+          case "gep":
+            conteudo = "<h2>Gestão Empresarial</h2><p>Voltado à administração de empresas, marketing e finanças.</p>";
+            break;
+          case "proj":
+            conteudo = "<h2>Projetos Mecânicos</h2><p>Curso que forma projetistas para o setor industrial mecânico.</p>";
+            break;
+          case "manut":
+            conteudo = "<h2>Manutenção Industrial</h2><p>Foco em manutenção preditiva, corretiva e preventiva de máquinas.</p>";
+            break;
+        }
+
+        const novaJanela = window.open("", "cursoJanela", "width=600,height=300");
+        novaJanela.document.write(`
+          <html>
+            <head><title>${nomeCurso}</title></head>
+            <body style="font-family: Arial; padding: 20px;">
+              ${conteudo}
+            </body>
+          </html>
+        `);
+      }
+    }
+  </script>
+
+</body>
+</html>
