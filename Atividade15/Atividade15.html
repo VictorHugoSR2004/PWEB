@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário Principal</title>
+  <style>
+    body {
+      background-color: #00cfff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    form {
+      display: inline-block;
+      text-align: left;
+      margin-top: 20px;
+    }
+    label, textarea, input {
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Formulário Principal</h1>
+  <form name="nomeform" onsubmit="return validar()">
+    <label>Nome:</label>
+    <input type="text" name="nome" />
+
+    <label>E-mail:</label>
+    <input type="email" name="email" />
+
+    <label>Comentário:</label>
+    <textarea name="comentario" rows="4" cols="30"></textarea>
+
+    <p>Pesquisa:<br>Primeira vez nesta página??</p>
+    <input type="radio" name="pesquisa" value="sim" /> Sim
+    <input type="radio" name="pesquisa" value="nao" /> Não
+
+    <br><br>
+    <input type="submit" value="Enviar" />
+    <input type="reset" value="Limpar" />
+  </form>
+
+  <script>
+    function validar() {
+      const elementos = document.nomeform.elements;
+      const nome = elementos["nome"].value.trim();
+      const email = elementos["email"].value.trim();
+      const comentario = elementos["comentario"].value.trim();
+      const pesquisa = elementos["pesquisa"].value;
+
+      if (nome.length < 10) {
+        alert("O nome deve ter pelo menos 10 caracteres.");
+        return false;
+      }
+
+      if (comentario.length < 20) {
+        alert("O comentário deve ter pelo menos 20 caracteres.");
+        return false;
+      }
+
+      if (!email.includes("@")) {
+        alert("Digite um e-mail válido.");
+        return false;
+      }
+
+      if (!document.querySelector('input[name="pesquisa"]:checked')) {
+        alert("Por favor, responda à pesquisa.");
+        return false;
+      } else {
+        if (pesquisa === "nao") {
+          alert("Que bom que você voltou a visitar esta página!");
+        } else {
+          alert("Volte sempre à esta página!");
+        }
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
