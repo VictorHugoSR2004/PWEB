@@ -1,14 +1,19 @@
 let filmes = [];
 
-window.onload = function () {
-
+window.onload = async function () {
   const filmesSalvos = localStorage.getItem('filmes');
-  filmes = filmesSalvos ? JSON.parse(filmesSalvos) : [];
-  
 
-  if (filmes.length === 0) {
-    filmes = []; 
-    salvarNoLocalStorage();
+  if (filmesSalvos) {
+    filmes = JSON.parse(filmesSalvos);
+  } else {
+    try {
+      const resposta = await fetch('data/filmes.json');
+      filmes = await resposta.json();
+      localStorage.setItem('filmes', JSON.stringify(filmes));
+    } catch (erro) {
+      console.error('Erro ao carregar filmes.json:', erro);
+      alert('Erro ao carregar dados iniciais. Veja o console.');
+    }
   }
 
   mostrarTela('listar');
