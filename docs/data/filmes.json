@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "titulo": "Carros",
+    "diretor": "John Lasseter",
+    "ano": 2006,
+    "genero": "Animação",
+    "duracao": 117,
+    "elenco": "Owen Wilson, Paul Newman",
+    "classificacao": "Livre",
+    "sinopse": "Relâmpago McQueen é um carro de corrida ambicioso que aprende lições de vida em uma cidadezinha chamada Radiator Springs.",
+    "notaUsuario": 4.5,
+    "dataAdicao": "20/06/2025",
+    "imagem":"https://play-lh.googleusercontent.com/kHt8qbche40zkE6yZwA8IUe5ARINp4PjrJ5mi622GEzQFYWCaGTQDAl58rrRKRKyhnD2"
+  },
+  {
+    "id": 2,
+    "titulo": "Scooby-Doo",
+    "diretor": "Raja Gosnell",
+    "ano": 2002,
+    "genero": "Aventura/Comédia",
+    "duracao": 86,
+    "elenco": "Freddie Prinze Jr., Sarah Michelle Gellar",
+    "classificacao": "10 anos",
+    "sinopse": "Scooby-Doo e sua turma se reúnem para resolver o mistério de uma ilha cheia de monstros assustadores.",
+    "notaUsuario": 4.2,
+    "dataAdicao": "20/06/2025",
+    "imagem": "https://upload.wikimedia.org/wikipedia/pt/7/77/Scooby-Doo_P%C3%B4ster.png"
+  },
+  {
+    "id": 3,
+    "titulo": "Piratas do Caribe: A Maldição do Pérola Negra",
+    "diretor": "Gore Verbinski",
+    "ano": 2003,
+    "genero": "Aventura/Fantasia",
+    "duracao": 143,
+    "elenco": "Johnny Depp, Orlando Bloom, Keira Knightley",
+    "classificacao": "12 anos",
+    "sinopse": "O pirata Jack Sparrow tenta recuperar seu navio enquanto enfrenta uma tripulação amaldiçoada.",
+    "notaUsuario": 4.8,
+    "dataAdicao": "20/06/2025",
+    "imagem": "https://br.web.img3.acsta.net/pictures/14/02/06/15/11/493568.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Velozes e Furiosos",
+    "diretor": "Rob Cohen",
+    "ano": 2001,
+    "genero": "Ação/Crime",
+    "duracao": 106,
+    "elenco": "Vin Diesel, Paul Walker, Michelle Rodriguez",
+    "classificacao": "14 anos",
+    "sinopse": "Um policial se infiltra em um grupo de corridas ilegais de rua, mas acaba se envolvendo demais.",
+    "notaUsuario": 4.6,
+    "dataAdicao": "20/06/2025",
+    "imagem":"https://br.web.img3.acsta.net/c_310_420/medias/nmedia/18/87/23/46/19873389.jpg"
+  }
+]
